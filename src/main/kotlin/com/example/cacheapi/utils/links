@@ -1,0 +1,14 @@
+//jdbc:h2:mem:h2database
+
+//{
+//    "timestamp": "2019-10-08T20:37:04.942+0000",
+//    "status": 500,
+//    "error": "Internal Server Error",
+//    "message": "executeMany; bad SQL grammar [CREATE TABLE mobile_events(id INT, name VARCHAR(100)]; nested exception is io.r2dbc.spi.R2dbcBadGrammarException: [42001] [42001] Syntax error in SQL statement \"CREATE TABLE MOBILE_EVENTS(ID INT, NAME VARCHAR(100) [*]\"; expected \"FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )\"; SQL statement:\nCREATE TABLE mobile_events(id INT, name VARCHAR(100) [42001-199]",
+//    "path": "/events"
+//}
+
+
+//https://docs.spring.io/spring-data/r2dbc/docs/1.0.x/reference/html/#reference
+
+//https://spring.io/guides/gs/routing-and-filtering/
