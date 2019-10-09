@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController
 class MobileEventController(private val databaseClient: DatabaseClient,
                             private val mobileEvenRepository: MobileEventRepository) {
 
+    val query = /*"DROP TABLE IF EXISTS mobile_events;"*/
+            "CREATE TABLE mobile_events(user_id BIGINT, create_date BIGINT, payload VARCHAR)"
+
+
     @GetMapping("/events")
     fun getMobileEvents() = databaseClient
             .execute("SELECT * FROM mobile_events")
@@ -21,7 +25,7 @@ class MobileEventController(private val databaseClient: DatabaseClient,
 
     @PostMapping("/events")
     fun createTableMobileEvents() = databaseClient
-            .execute("CREATE TABLE mobile_events(id SERIAL PRIMARY KEY, name VARCHAR(100))")
+            .execute(query)
             .fetch()
             .all()
 
@@ -31,8 +35,8 @@ class MobileEventController(private val databaseClient: DatabaseClient,
             .fetch()
             .all()
 
-    @GetMapping("/events/show")
-    fun getMobileEventsViaRepository() = mobileEvenRepository.findAll()
+    /*@GetMapping("/events/show")
+    fun getMobileEventsViaRepository() = mobileEvenRepository.findAll()*/
 
     @PostMapping("/events/show")
     fun saveMobileEventViaRepository(@RequestBody event: MobileEvent) = mobileEvenRepository.save(event)

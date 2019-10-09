@@ -12,3 +12,44 @@
 //https://docs.spring.io/spring-data/r2dbc/docs/1.0.x/reference/html/#reference
 
 //https://spring.io/guides/gs/routing-and-filtering/
+
+
+
+
+package com.example.webclient.service
+
+import com.example.webclient.entity.MobileEvent
+import org.springframework.http.MediaType
+import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.BodyInserters
+import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToFlux
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+
+@Service
+class MobileEventServiceImpl : MobileEventService {
+
+    override fun getMobileEvents(): Flux<MobileEvent> {
+        val webClient = WebClient.create()
+        val result = webClient
+                .get()
+                .uri("http://localhost:8099/events/show")
+                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .retrieve()
+                .bodyToFlux<MobileEvent>()
+        return result
+    }
+
+    override fun createTableMobileEvents(mobileEvent: MobileEvent): Mono<MobileEvent> {
+        val webClient = WebClient.create()
+        val result = webClient
+                .post()
+                .uri("http://localhost:8099/events/show")
+                .body(BodyInserters.fromObject(mobileEvent))
+                .exchange()
+                .flatMap { clientResponse -> clientResponse.bodyToMono(MobileEvent::class.java) }
+
+        return result
+    }
+}
